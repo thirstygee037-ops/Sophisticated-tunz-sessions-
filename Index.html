@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>Sophisticated tunz session</title>
+<link rel="manifest" href="manifest.json<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#000000"/>
+<meta name="theme-color" content="#f39c12">
+<style>
+:root{--bg:#000;--accent:#f2391f;--gold:#f39c12;--muted:#bfbfbf}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;height:100%;background:var(--bg);color:#fff;font-family:Inter,Arial,sans-serif}
+.header{position:sticky;top:0;z-index:90;background:linear-gradient(180deg,rgba(0,0,0,0.6),transparent);display:flex;align-items:center;justify-content:space-between;padding:12px 16px}
+.brand{display:flex;gap:12px;align-items:center}
+.mark{width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--gold),var(--accent));display:flex;align-items:center;justify-content:center;color:#000;font-weight:900}
+.container{max-width:1100px;margin:18px auto;padding:0 14px}
+.hero{padding:28px 12px;border-radius:12px;text-align:center;background:radial-gradient(circle at center, rgba(30,30,30,0.6), rgba(0,0,0,0.85));}
+h1{margin:0;color:var(--gold);font-size:clamp(20px,5vw,40px)}
+.small{color:var(--muted);font-size:14px}
+.section{background:rgba(255,255,255,0.02);padding:14px;border-radius:10px;margin:12px 0}
+.flex{display:flex;gap:10px;align-items:center}
+.btn{background:var(--gold);color:#000;padding:8px 12px;border-radius:8px;border:none;cursor:pointer;font-weight:700}
+.btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--gold)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+.thumb img{width:100%;height:120px;object-fit:cover;border-radius:8px}
+.chat-box{height:200px;overflow:auto;padding:8px;background:rgba(0,0,0,0.4);border-radius:8px}
+audio{width:100%;margin-top:8px}
+.now-playing{display:flex;align-items:center;gap:12px;margin-top:12px;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px}
+.progress{height:6px;background:rgba(255,255,255,0.06);flex:1;border-radius:6px;overflow:hidden}
+.progress > div{height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--accent))}
+.equalizer{display:flex;gap:4px;align-items:end;height:56px}
+.eq-bar{width:10px;background:linear-gradient(180deg,var(--accent),var(--gold));border-radius:3px;opacity:0.95;transform-origin:bottom}
+#deck-eq{display:none;align-items:flex-end}
+.footer{padding:18px;text-align:center;color:var(--muted);font-size:13px;margin-bottom:40px}
+@media(max-width:600px){ .flex{flex-direction:column;align-items:stretch} .now-playing{flex-direction:column;align-items:flex-start} .equalizer{height:40px} }
+</style>
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("/sw.js")
+      .then(reg => console.log("Service Worker registered:", reg))
+      .catch(err => console.log("Service Worker failed:", err));
+  });
+}
+</script>
+
+</head>
+<body>
+<header class="header">
+  <div class="brand"><div class="mark">ST_s</div><div><strong>Thirsty Gee</strong><div class="small">Underground & Soulful House</div></div></div>
+  <div class="flex"><button id="installBtn" class="btn ghost" style="display:none">Install</button><button id="muteBtn" class="btn">Mute</button></div>
+</header>
+
+<main class="container">
+  <section class="hero">
+    <h1>Sophisticated tunz session</h1>
+    <div class="small">expensive for ordinary ears • Soulful house • Underground house</div>
+    <br>
+    <br>
+    <div style="margin-top:12px"><button class="btn" onclick="document.getElementById('music').scrollIntoView({behavior:'smooth'})">Listen</button> <button class="btn ghost" onclick="document.getElementById('bookings').scrollIntoView({behavior:'smooth'})">Book Me</button></div>
+    <p id="home-short" class="small" style="margin-top:12px">I’m a DJ from Dinokana with a lifelong passion for music. Growing up surrounded by soulful rhythms, I fell in love with underground and soulful house, crafting sets that bring people together and create unforgettable vibes.</p>
+  </section>
+
+  <section id="about" class="section">
+    <h2>About Me</h2>
+    <p class="small"><strong>Dinokana roots.</strong> I grew up in a small village called Dinokana, a place filled with tradition, community, and rhythm. Life in the village taught me the value of connection—whether through conversation, celebration, or music.</p>
+    <p class="small">As a child, I would spend hours listening to tapes, radio shows, and any music I could get my hands on. I wasn’t just listening—I was studying the patterns, the emotions, and the stories behind each track.</p>
+    <p class="small">Over time, my passion evolved from simply listening to actively shaping my own sound. I started collecting music, exploring genres, and teaching myself the art of DJing. My love for underground house and soulful house became my identity as a DJ.</p>
+    <p class="small">What I love most about being a DJ is the ability to create a shared experience. There’s a magic in watching a crowd connect to the same beat, moving as one, feeling the same energy.</p>
+    <p class="small">Today, I continue to grow as an artist, inspired by where I come from and driven by where I’m going. Dinokana will always be my foundation, and every set I play carries a piece of my journey.</p>
+  </section>
+
+  <section id="soph" class="section">
+    <h2>Sophisticated Tunz Session</h2>
+    <p class="small">The Sophisticated Tunz Session is more than just an event—it’s a carefully curated musical experience that celebrates the deeper, more soulful side of house music. Every session is designed to take listeners on a journey through layered beats, warm melodies, and emotional harmonies that speak to the soul.</p>
+    <p class="small">At the core of Sophisticated Tunz is a dedication to underground house and soulful house. These genres have always represented authenticity, community, and timeless rhythm.</p>
+    <p class="small">Each session is a unique blend of tracks, mixed live with the energy of the moment. The focus is on creating a seamless flow that keeps the dance floor moving and the atmosphere alive.</p>
+    <p class="small">For those who attend a Sophisticated Tunz Session, it’s more than a night out—it’s a cultural experience. It’s a space where like-minded music lovers gather, share energy, and lose themselves in the rhythm.</p>
+    <p class="small">The heart of these sessions lies in storytelling. Each mix is a narrative told through music, moving through moods and emotions while staying rooted in deep and soulful groove.</p>
+    <p class="small"><!-- MIX PLAYER EMBED GOES HERE --></p>
+  </section>
+
+  <section id="gallery" class="section">
+    <h2>Gallery</h2>
+    <div class="gallery"><div class="thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='100%' height='100%' fill='%23000000'/><g fill='%23f39c12'><rect x='120' y='120' width='560' height='80' rx='8'/><circle cx='640' cy='200' r='76'/></g><text x='50%' y='550' font-size='28' fill='%23fff' text-anchor='middle'>DJ Equipment</text></svg>" alt="DJ equipment"></div><div class="thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='100%' height='100%' fill='%23000000'/><g fill='%23f39c12' opacity='0.9'><circle cx='120' cy='320' r='24'/><circle cx='180' cy='260' r='24'/><circle cx='240' cy='300' r='24'/></g><text x='50%' y='550' font-size='28' fill='%23fff' text-anchor='middle'>Live Crowd</text></svg>" alt="Live"></div><div class="thumb"><img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='600'><rect width='100%' height='100%' fill='%23000000'/><g fill='%23f39c12'><rect x='140' y='220' width='520' height='120' rx='12'/><rect x='320' y='120' width='160' height='80' rx='10'/></g><text x='50%' y='550' font-size='28' fill='%23fff' text-anchor='middle'>Stage</text></svg>" alt="Stage"></div></div>
+  </section>
+
+  <section id="events" class="section">
+    <h2>Events & Countdown</h2>
+    <div id="events-list"></div>
+    <div style="margin-top:10px" class="flex"><input id="evt-name" placeholder="Event name"><input id="evt-date" type="date"><input id="evt-venue" placeholder="Venue"><button id="addEvt" class="btn">Add</button></div>
+    <div style="margin-top:10px"><div class="small">Next event:</div><div id="countDisplay" style="color:var(--gold);font-weight:700">No event set</div></div>
+  </section>
+
+  <section id="music" class="section">
+    <h2>Now Playing</h2>
+    <div id="nowPlayingArea" class="now-playing" style="display:none">
+      <div><strong>Now Playing:</strong> <span id="trackTitle">Soulful House Loop — Thirsty Gee</span></div>
+      <div class="progress"><div id="progBar"></div></div>
+      <div id="timeLabel" class="small">0:00 / 0:00</div>
+    </div>
+
+    <!-- put your 2-3 minute MP3/WAV file in the same folder and name it soulful_loop.mp3 -->
+    <audio id="bgAudio" src="soulful_loop.mp3" preload="auto" loop></audio>
+
+    <div style="margin-top:8px"><input id="embedLink" placeholder="Paste Spotify/SoundCloud/YouTube embed URL"><button id="setEmbed" class="btn ghost">Set Embed</button></div>
+    <div id="embedHolder" style="margin-top:8px"></div>
+
+    <div id="deck-eq" class="equalizer" style="margin-top:12px">
+      <div class="eq-bar" style="height:8px"></div><div class="eq-bar" style="height:12px"></div><div class="eq-bar" style="height:6px"></div><div class="eq-bar" style="height:18px"></div><div class="eq-bar" style="height:10px"></div><div class="eq-bar" style="height:14px"></div><div class="eq-bar" style="height:9px"></div><div class="eq-bar" style="height:16px"></div>
+    </div>
+  </section>
+
+  <section id="fan" class="section">
+    <h2>Fan Wall & Reviews</h2>
+    <input id="fan-name" placeholder="Name"><textarea id="fan-msg" placeholder="Write a shoutout"></textarea><button id="postFan" class="btn">Post</button>
+    <div id="fan-list" style="margin-top:10px"></div>
+    <hr style="border:none;border-top:1px solid rgba(255,255,255,0.04);margin:12px 0">
+    <h3>Reviews</h3><div id="review-list"></div>
+    <input id="rev-name" placeholder="Name"><textarea id="rev-text" placeholder="Your review"></textarea>
+    <div style="display:flex;gap:8px;margin-top:8px"><input id="rev-rating" type="number" min="1" max="5" placeholder="1-5" style="width:110px"><button id="addRev" class="btn ghost">Submit</button></div>
+  </section>
+
+  <section id="store" class="section">
+    <h2>Merch & Tips</h2>
+    <div class="flex" style="flex-wrap:wrap"><div style="flex:1;min-width:160px"><strong>STsession Cap</strong><div class="small">R70</div><button class="btn" data-buy="STsession Cap" data-price="70">Add</button></div><div style="flex:1;min-width:160px"><strong>tshirt</strong><div class="small">R300</div><button class="btn" data-buy="tshirt" data-price="300">Add</button></div><div style="flex:1;min-width:160px"><strong>VIP Pass</strong><div class="small">Special access</div><button class="btn" data-buy="VIP Pass" data-price="1">Add</button></div></div>
+    <div style="margin-top:8px"><strong>Cart</strong><div id="cart-list" class="small">Cart is empty</div><div style="margin-top:8px"><button id="checkout" class="btn ghost">Checkout</button> <button id="clearCart" class="btn ghost">Clear</button></div></div>
+    <div style="margin-top:8px"><h4 class="small">Tip Jar</h4><div class="flex"><input id="tipAmt" placeholder="Amount (R)"><button id="tipBtn" class="btn">Tip</button></div></div>
+  </section>
+
+  <section id="polls" class="section">
+    <h2>Polls & Voting</h2>
+    <div id="poll-list"></div>
+    <input id="pollQ" placeholder="Question"><input id="pollOpt" placeholder="Comma-separated options"><button id="createPoll" class="btn">Create</button>
+  </section>
+
+  <section id="vip" class="section">
+    <h2>VIP Area</h2>
+    <div class="small">Enter VIP passcode to unlock exclusive content.</div>
+    <div style="display:flex;gap:8px;margin-top:8px"><input id="vip-pass" placeholder="VIP pass"><button id="vip-btn" class="btn">Unlock</button></div>
+    <div id="vip-content" style="display:none;margin-top:8px;background:rgba(243,156,18,0.06);padding:10px;border-radius:8px"><strong>VIP Mix Pack</strong><div class="small">Exclusive tracks & invites.</div></div>
+  </section>
+
+  <section id="photobooth" class="section">
+    <h2>Photo Booth</h2>
+    <p class="small">Take a selfie, watermark STsession, save/share.</p>
+    <video id="cam" autoplay playsinline style="width:100%;border-radius:8px;background:#111"></video>
+    <div style="display:flex;gap:8px;margin-top:8px"><button id="snap" class="btn">Snap</button><button id="savePic" class="btn ghost">Save</button><button id="sharePic" class="btn ghost">Share</button></div>
+    <canvas id="photoCanvas" style="display:none"></canvas><div id="photoMsg" class="small"></div>
+  </section>
+
+  <section id="remix" class="section">
+    <h2>Remix Contest</h2>
+    <input id="remixFile" type="file" accept="audio/*"><button id="remixUpload" class="btn">Upload</button>
+    <div id="remixList" class="small" style="margin-top:8px"></div>
+  </section>
+
+  <section id="chat" class="section">
+    <h2>Live Chat</h2>
+    <div id="chatWindow" class="chat-box"></div>
+    <div style="display:flex;gap:8px;margin-top:8px"><input id="chatName" placeholder="Your name"><input id="chatMsg" placeholder="Message"><button id="chatSend" class="btn">Send</button></div>
+  </section>
+
+  <section id="bookings" class="section">
+    <h2>Bookings</h2>
+    <input id="b-name" placeholder="Name"><input id="b-email" placeholder="Email"><input id="b-date" type="date"><button id="bookBtn" class="btn">Submit Booking</button>
+    <div id="book-list" style="margin-top:8px"></div>
+  </section>
+
+  <section id="contact" class="section">
+    <h2>Contact & Social</h2>
+    <div class="flex"><a href="https://wa.me/27692986528" target="_blank" class="small">WhatsApp</a> <a href="https://facebook.com" target="_blank" class="small">Facebook</a> <a href="https://instagram.com" target="_blank" class="small">Instagram</a></div>
+  </section>
+
+  <div class="footer">&copy; 2025 Thirsty Gee — All rights reserved</div>
+</main>
+
+<script>
+/* CONFIG */
+const VIP_PASS = 'TGvip2025';
+let ENABLE_CHAT = false;
+const FIREBASE_CONFIG = null;
+const PAYPAL_PLACEHOLDER = 'https://www.paypal.com/paypalme/placeholder';
+
+/* HELPERS */
+function $(id){return document.getElementById(id)}
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c])) }
+
+/* AUDIO: background soulful loop */
+const audio = $('bgAudio');
+audio.volume = 0.0; // start low for fade-in
+audio.autoplay = true;
+audio.loop = true;
+let targetVolume = 0.5;
+let fadeDuration = 20.0; // seconds fade-in
+let fadeStart = null;
+let playing = false;
+let eqInterval = null;
+const eqBars = Array.from(document.querySelectorAll('.eq-bar'));
+
+/* Play/pause and mute controls */
+const muteBtn = $('muteBtn');
+muteBtn.addEventListener('click', ()=>{
+  if(audio.muted){ audio.muted = false; muteBtn.textContent = 'Mute'; if(!audio.paused){ showEq(true); } }
+  else { audio.muted = true; muteBtn.textContent = 'Unmute'; showEq(false); }
+});
+
+/* Show/hide equalizer */
+function showEq(show){
+  const deck = $('deck-eq');
+  if(show){ deck.style.display = 'flex'; } else { deck.style.display = 'none'; }
+}
+
+/* Animate equalizer when playing */
+function startEq(){ if(eqInterval) clearInterval(eqInterval); showEq(true); eqInterval = setInterval(()=>{ eqBars.forEach((b,i)=>{ const h = 6 + Math.floor(Math.random()*50); b.style.height = h + 'px'; }); }, 120); }
+function stopEq(){ if(eqInterval) clearInterval(eqInterval); showEq(false); eqBars.forEach(b=>b.style.height='6px'); }
+
+/* Fade in logic */
+function stepFade(timestamp){
+  if(!fadeStart) fadeStart = timestamp;
+  const elapsed = (timestamp - fadeStart)/1000.0;
+  const ratio = Math.min(1, elapsed / fadeDuration);
+  audio.volume = ratio * targetVolume;
+  if(ratio < 1) requestAnimationFrame(stepFade);
+  else { audio.volume = targetVolume; }
+}
+
+/* Autoplay handling: start fade-in when canplay */
+audio.addEventListener('canplay', ()=>{
+  try{ audio.play(); }catch(e){ /* autoplay blocked */ }
+  requestAnimationFrame(stepFade);
+  playing = true;
+  showNowPlaying(true);
+  startEq();
+});
+
+audio.addEventListener('play', ()=>{ playing = true; showNowPlaying(true); startEq(); });
+audio.addEventListener('pause', ()=>{ playing = false; showNowPlaying(false); stopEq(); });
+
+/* Now Playing UI and progress */
+const nowArea = $('nowPlayingArea');
+const progBar = $('progBar');
+const timeLabel = $('timeLabel');
+function showNowPlaying(show){ if(show){ nowArea.style.display='flex'; } else { nowArea.style.display='none'; } }
+function updateProgress(){ if(!audio.duration || isNaN(audio.duration)) return; const pct = (audio.currentTime / audio.duration) * 100; progBar.style.width = pct + '%'; const fmt = (s)=>{ const m=Math.floor(s/60), sec=Math.floor(s%60); return `${m}:${String(sec).padStart(2,'0')}` } timeLabel.textContent = fmt(audio.currentTime) + ' / ' + fmt(audio.duration); }
+setInterval(updateProgress,500);
+
+/* VIP unlock with animation and scratch */
+const vipBtn = $('vip-btn');
+vipBtn.addEventListener('click', ()=>{
+  const code = $('vip-pass').value.trim();
+  if(code === VIP_PASS){
+    // play scratch if available
+    try{ new Audio('scratch.mp3').play(); }catch(e){}
+    // flash animation
+    document.body.style.transition = 'background 0.6s';
+    const prevBg = document.body.style.background;
+    document.body.style.background = 'linear-gradient(90deg,#000 0%, #f2391f 50%, #000 100%)';
+    setTimeout(()=>{ document.body.style.background = prevBg; }, 700);
+    // show vip content
+    $('vip-content').style.display = 'block';
+    // dramatic volume drop then restore
+    const prevVol = audio.volume;
+    const steps = 30; let i=0;
+    const down = setInterval(()=>{ i++; audio.volume = prevVol * (1 - (i/steps)*0.65); if(i>=steps){ clearInterval(down); setTimeout(()=>{ let j=0; const up=setInterval(()=>{ j++; audio.volume = prevVol * (0.35 + (j/steps)*0.65); if(j>=steps){ clearInterval(up); audio.volume = prevVol; } },20); },1200); } },20);
+  } else { alert('Incorrect passcode'); }
+});
+
+/* Gallery click enlarge */
+document.querySelectorAll('.thumb img').forEach(img=>img.addEventListener('click', ()=>{ const modal=document.createElement('div'); modal.style.position='fixed'; modal.style.inset='0'; modal.style.background='rgba(0,0,0,0.95)'; modal.style.display='flex'; modal.style.alignItems='center'; modal.style.justifyContent='center'; modal.style.zIndex=9999; const im=document.createElement('img'); im.src=img.src; im.style.maxWidth='96%'; im.style.maxHeight='90%'; im.style.borderRadius='8px'; modal.appendChild(im); modal.addEventListener('click', ()=>document.body.removeChild(modal)); document.body.appendChild(modal); })) ;
+
+/* Events storage */
+function loadEvents(){ const arr = JSON.parse(localStorage.getItem('tg_events')||'[]'); const el=$('events-list'); el.innerHTML=''; arr.sort((a,b)=>new Date(a.date)-new Date(b.date)); arr.forEach(e=>{ const d=document.createElement('div'); d.style.padding='10px'; d.style.marginBottom='8px'; d.style.background='rgba(255,255,255,0.02)'; d.style.borderRadius='8px'; d.innerHTML=`<strong>${escapeHtml(e.name)}</strong><div class='small'>${new Date(e.date).toLocaleString()} • ${escapeHtml(e.venue)}</div>`; el.appendChild(d); }); if(arr.length){ const next=arr.find(a=>new Date(a.date)>new Date())||arr[0]; window.nextEventTS=new Date(next.date).getTime(); } else window.nextEventTS=null; }
+$('addEvt').addEventListener('click', ()=>{ const n=$('evt-name').value.trim(), d=$('evt-date').value, v=$('evt-venue').value.trim(); if(!n||!d){ alert('Add event name & date'); return;} const arr=JSON.parse(localStorage.getItem('tg_events')||'[]'); arr.push({name:n,date:d,venue:v}); localStorage.setItem('tg_events', JSON.stringify(arr)); $('evt-name').value=''; $('evt-date').value=''; $('evt-venue').value=''; loadEvents(); updateCountdown(); });
+loadEvents();
+function updateCountdown(){ const cd=$('countDisplay'); const ts=window.nextEventTS||localStorage.getItem('tg_next_date'); if(!ts){ cd.textContent='No upcoming event'; return; } const diff=Number(ts)-Date.now(); if(diff<=0){ cd.textContent='Happening now or passed'; return; } const d=Math.floor(diff/86400000), h=Math.floor((diff%86400000)/3600000), m=Math.floor((diff%3600000)/60000), s=Math.floor((diff%60000)/1000); cd.textContent=`${d}d ${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}` }
+setInterval(updateCountdown,1000); updateCountdown();
+
+/* Fan wall */
+function loadFans(){ const arr=JSON.parse(localStorage.getItem('tg_fans')||'[]').reverse(); const el=$('fan-list'); el.innerHTML=''; arr.forEach(f=>{ const d=document.createElement('div'); d.style.padding='8px'; d.style.marginBottom='8px'; d.style.borderRadius='8px'; d.style.background='rgba(255,255,255,0.02)'; d.innerHTML=`<strong>${escapeHtml(f.name)}</strong><div class='small'>${new Date(f.ts).toLocaleString()}</div><div style='margin-top:6px'>${escapeHtml(f.msg)}</div>`; el.appendChild(d); }); }
+$('postFan').addEventListener('click', ()=>{ const name=$('fan-name').value.trim()||'Anonymous', msg=$('fan-msg').value.trim(); if(!msg){ alert('Write a message'); return;} const arr=JSON.parse(localStorage.getItem('tg_fans')||'[]'); arr.push({name,msg,ts:Date.now()}); localStorage.setItem('tg_fans', JSON.stringify(arr)); $('fan-name').value=''; $('fan-msg').value=''; loadFans(); });
+loadFans();
+
+/* Reviews */
+function renderReviews(){ const revs=JSON.parse(localStorage.getItem('tg_reviews')||'[]').reverse(); const out=$('review-list'); out.innerHTML=''; revs.forEach(r=>{ const div=document.createElement('div'); div.style.padding='8px'; div.style.marginBottom='8px'; div.style.borderRadius='8px'; div.style.background='rgba(255,255,255,0.02)'; const stars='★'.repeat(r.rating)+'☆'.repeat(5-r.rating); div.innerHTML=`<strong>${escapeHtml(r.name)}</strong> <span style='color:gold'>${stars}</span><div style='margin-top:6px'>${escapeHtml(r.text)}</div><div class='small'>${new Date(r.ts).toLocaleString()}</div>`; out.appendChild(div); }); }
+$('addRev').addEventListener('click', ()=>{ const name=$('rev-name').value.trim()||'Anonymous', text=$('rev-text').value.trim(), rating=parseInt($('rev-rating').value,10); if(!text||!rating||rating<1||rating>5){ alert('Provide text and rating 1-5'); return;} const arr=JSON.parse(localStorage.getItem('tg_reviews')||'[]'); arr.push({name,text,rating,ts:Date.now()}); localStorage.setItem('tg_reviews', JSON.stringify(arr)); $('rev-name').value=''; $('rev-text').value=''; $('rev-rating').value=''; renderReviews(); }); renderReviews();
+
+/* Cart */
+let CART=JSON.parse(localStorage.getItem('tg_cart')||'[]');
+function renderCart(){ const el=$('cart-list'); if(CART.length===0) el.innerHTML='Cart is empty'; else el.innerHTML=CART.map((c,i)=>`${escapeHtml(c.item)} — R${c.price} <a href='#' data-rem='${i}'>remove</a>`).join('<br>'); localStorage.setItem('tg_cart', JSON.stringify(CART)); }
+document.querySelectorAll('[data-buy]').forEach(b=>b.addEventListener('click', ()=>{ CART.push({item:b.getAttribute('data-buy'),price:b.getAttribute('data-price')}); renderCart(); }));
+document.addEventListener('click',(e)=>{ if(e.target.dataset && e.target.dataset.rem!==undefined){ CART.splice(Number(e.target.dataset.rem),1); renderCart(); } });
+$('checkout').addEventListener('click', ()=>{ if(CART.length===0){ alert('Cart empty'); return; } window.open(PAYPAL_PLACEHOLDER,'_blank'); });
+$('clearCart').addEventListener('click', ()=>{ CART=[]; renderCart(); }); renderCart();
+
+/* Tip jar */
+$('tipBtn').addEventListener('click', ()=>{ const amt=Number($('tipAmt').value); if(!amt||amt<=0){ alert('Enter amount'); return;} window.open(PAYPAL_PLACEHOLDER,'_blank'); });
+
+/* Polls */
+function renderPolls(){ const polls=JSON.parse(localStorage.getItem('tg_polls')||'[]'); const holder=$('poll-list'); holder.innerHTML=''; polls.forEach((p,pi)=>{ const d=document.createElement('div'); d.style.padding='8px'; d.style.marginBottom='8px'; d.style.background='rgba(255,255,255,0.02)'; d.innerHTML=`<strong>${escapeHtml(p.q)}</strong><div class='small'>${p.opts.map((o,oi)=>`<div style='margin-top:6px'><button data-poll='${pi}' data-opt='${oi}' class='btn'>${escapeHtml(o)}</button> ${p.votes[oi]||0}</div>`).join('')}</div>`; holder.appendChild(d); }); holder.querySelectorAll('button[data-poll]').forEach(btn=>btn.addEventListener('click', ()=>{ const pi=Number(btn.dataset.poll), oi=Number(btn.dataset.opt); const polls=JSON.parse(localStorage.getItem('tg_polls')||'[]'); polls[pi].votes[oi]=(polls[pi].votes[oi]||0)+1; localStorage.setItem('tg_polls', JSON.stringify(polls)); renderPolls(); })); }
+$('createPoll').addEventListener('click', ()=>{ const q=$('pollQ').value.trim(), opts=$('pollOpt').value.split(',').map(s=>s.trim()).filter(Boolean); if(!q||opts.length<2){ alert('Question and 2+ options'); return;} const polls=JSON.parse(localStorage.getItem('tg_polls')||'[]'); polls.push({q,opts,votes:opts.map(()=>0)}); localStorage.setItem('tg_polls', JSON.stringify(polls)); $('pollQ').value=''; $('pollOpt').value=''; renderPolls(); }); renderPolls();
+
+/* Remix upload */
+$('remixUpload').addEventListener('click', ()=>{ const f=$('remixFile').files[0]; if(!f){ alert('Choose file'); return;} const arr=JSON.parse(localStorage.getItem('tg_remix')||'[]'); arr.push({name:f.name,size:f.size,ts:Date.now()}); localStorage.setItem('tg_remix', JSON.stringify(arr)); renderRemix(); alert('Registered locally'); });
+function renderRemix(){ const arr=JSON.parse(localStorage.getItem('tg_remix')||'[]').reverse(); $('remixList').innerHTML = arr.map(a=>`${escapeHtml(a.name)} • ${Math.round(a.size/1024)} KB • ${new Date(a.ts).toLocaleString()}`).join('<br>'); } renderRemix();
+
+/* Local chat fallback */
+$('chatSend').addEventListener('click', ()=>{ const name=$('chatName').value.trim()||'Guest', msg=$('chatMsg').value.trim(); if(!msg) return; const arr=JSON.parse(localStorage.getItem('tg_local_chat')||'[]'); arr.push({name,msg,ts:Date.now()}); localStorage.setItem('tg_local_chat', JSON.stringify(arr)); renderLocalChat(); $('chatMsg').value=''; });
+function renderLocalChat(){ const arr=JSON.parse(localStorage.getItem('tg_local_chat')||'[]'); $('chatWindow').innerHTML = arr.map(m=>`<div class='small'><strong>${escapeHtml(m.name)}</strong>: ${escapeHtml(m.msg)} <span class='small'>• ${new Date(m.ts).toLocaleTimeString()}</span></div>`).join(''); $('chatWindow').scrollTop = $('chatWindow').scrollHeight; } renderLocalChat();
+
+/* Photo booth */
+const camVideo = $('cam'), photoCanvas = $('photoCanvas');
+async function startCam(){ try{ const s = await navigator.mediaDevices.getUserMedia({video:{facingMode:'user'},audio:false}); camVideo.srcObject = s; }catch(e){ console.warn('cam',e); $('photoMsg').textContent='Camera blocked or unavailable'; } }
+startCam();
+$('snap').addEventListener('click', ()=>{ if(!camVideo.videoWidth){ alert('Camera not ready'); return;} photoCanvas.width = camVideo.videoWidth; photoCanvas.height = camVideo.videoHeight; const cx = photoCanvas.getContext('2d'); cx.drawImage(camVideo,0,0); cx.fillStyle='rgba(243,156,18,0.9)'; cx.font = Math.max(20, photoCanvas.width/15)+'px sans-serif'; cx.textAlign='right'; cx.fillText('TG', photoCanvas.width-20, photoCanvas.height-20); $('photoMsg').textContent='Photo ready'; });
+$('savePic').addEventListener('click', ()=>{ try{ const a=document.createElement('a'); a.href = photoCanvas.toDataURL('image/png'); a.download='thirstygee-photo.png'; a.click(); }catch(e){ alert('Save failed'); } });
+$('sharePic').addEventListener('click', async ()=>{ try{ const dataUrl = photoCanvas.toDataURL('image/png'); const blob = await (await fetch(dataUrl)).blob(); const file = new File([blob],'thirstygee.png',{type:blob.type}); if(navigator.canShare && navigator.canShare({files:[file]})){ await navigator.share({files:[file],title:'Thirsty Gee selfie'}); } else alert('Sharing not supported here. Save the photo.'); }catch(e){ alert('Share failed'); } });
+
+/* Bookings */
+$('bookBtn').addEventListener('click', ()=>{ const name=$('b-name').value.trim(), email=$('b-email').value.trim(), date=$('b-date').value; if(!name||!email||!date){ alert('Fill all'); return;} const arr=JSON.parse(localStorage.getItem('tg_bookings')||'[]'); arr.push({name,email,date,ts:Date.now()}); localStorage.setItem('tg_bookings', JSON.stringify(arr)); $('b-name').value=''; $('b-email').value=''; $('b-date').value=''; renderBookings(); alert('Saved locally'); }); function renderBookings(){ const arr=JSON.parse(localStorage.getItem('tg_bookings')||'[]').reverse(); $('book-list').innerHTML = arr.map(b=>`<div style='padding:8px;background:rgba(255,255,255,0.02);margin-bottom:8px;border-radius:8px'><strong>${escapeHtml(b.name)}</strong><div class='small'>${escapeHtml(b.email)} • ${b.date}</div></div>`).join(''); } renderBookings();
+
+/* Embeds */
+$('setEmbed').addEventListener('click', ()=>{ const v=$('embedLink').value.trim(); const holder=$('embedHolder'); holder.innerHTML=''; if(!v){ holder.innerHTML='<div class=\"small\">No embed</div>'; return; } const iframe=document.createElement('iframe'); iframe.src=v; iframe.width='100%'; iframe.height=160; iframe.style.border='none'; holder.appendChild(iframe); });
+
+/* Install prompt handling */
+let deferredPrompt;
+window.addEventListener('beforeinstallprompt', (e)=>{ e.preventDefault(); deferredPrompt=e; $('installBtn').style.display='inline-block'; });
+$('installBtn').addEventListener('click', async ()=>{ if(deferredPrompt){ deferredPrompt.prompt(); const choice = await deferredPrompt.userChoice; deferredPrompt=null; $('installBtn').style.display='none'; } else alert('Install not available'); });
+
+/* Service worker register */
+if('serviceWorker' in navigator){ navigator.serviceWorker.register('sw.js').catch(e=>console.warn('sw fail', e)); }
+
+/* Update UI on page load */
+window.addEventListener('load', ()=>{
+  audio.play().catch(()=>{ /* blocked on some browsers */ });
+});
+</script>
+</body>
+</html>
